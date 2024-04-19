@@ -10,7 +10,7 @@ namespace DownloadManager
         Core.DownloadMan dm = new Core.DownloadMan();
         Core.DownloadFile downloadFile;
         DataTable DataTable;
-        
+
 
         public Form1()
         {
@@ -22,7 +22,7 @@ namespace DownloadManager
             TextLoc.Text = Properties.Settings.Default.PathLocation;
             DataTable = new DataTable();
             CreateLinksTable(DataTable);
-            
+
         }
 
         private void CreateLinksTable(DataTable dt)
@@ -48,14 +48,14 @@ namespace DownloadManager
 
         private void DownloadBtn_Click(object sender, EventArgs e)
         {
-           for (int i = 0;i< dataGridView1.Rows.Count -1;i++) 
+            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
-               Task t =   DownloadLinks(i);
+                Task t = DownloadLinks(i);
                 t.Wait();
             }
         }
 
-       private async Task DownloadLinks(int i)
+        private async Task DownloadLinks(int i)
         {
 
             string url = dataGridView1.Rows[i].Cells[1].Value.ToString();
@@ -69,26 +69,26 @@ namespace DownloadManager
             }
 
 
-            
+
         }
 
-        
 
-       
+
+
 
         private void FolderBtn_Click(object sender, EventArgs e)
         {
             string directoryPath = TextLoc.Text;
 
-            
+
             if (!string.IsNullOrEmpty(directoryPath))
             {
-                
+
                 Process.Start("explorer.exe", directoryPath);
             }
             else
             {
-               
+
                 MessageBox.Show("Directory path is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
@@ -96,10 +96,11 @@ namespace DownloadManager
 
         private void AddListBtn_Click(object sender, EventArgs e)
         {
-            if(TxtUrl.Text == "" && NameTb.Text == "" && ExTB.Text == "")
+            if (TxtUrl.Text == "" && NameTb.Text == "" && ExTB.Text == "")
             {
                 MessageBox.Show("missing value");
-            } else
+            }
+            else
             {
                 WebClient webClient = new WebClient();
                 string name = NameTb.Text + "." + ExTB.Text;
@@ -107,7 +108,7 @@ namespace DownloadManager
                     name,
                     TxtUrl.Text,
                     dm.GetSize(webClient, TxtUrl.Text),
-                    "Statues", 
+                    "Statues",
                     " 0");
 
                 DataRow dataRow = DataTable.NewRow();
@@ -118,6 +119,25 @@ namespace DownloadManager
                 dataRow["ProgressValue"] = downloadFile.ProgressValue;
                 DataTable.Rows.Add(dataRow);
                 dataGridView1.DataSource = DataTable;
+            }
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                
+                int selectedIndex = dataGridView1.SelectedRows[0].Index;
+
+                
+                if (dataGridView1.Rows[selectedIndex].Cells["ProgressValue"].Value != null)
+                {
+                    int progressValue;
+                    if (int.TryParse(dataGridView1.Rows[selectedIndex].Cells["ProgressValue"].Value.ToString(), out progressValue))
+                    {
+                        progressBar1.Value = progressValue;
+                    }
+                }
             }
         }
     }
