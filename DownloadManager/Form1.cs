@@ -126,10 +126,10 @@ namespace DownloadManager
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                
+
                 int selectedIndex = dataGridView1.SelectedRows[0].Index;
 
-                
+
                 if (dataGridView1.Rows[selectedIndex].Cells["ProgressValue"].Value != null)
                 {
                     int progressValue;
@@ -139,6 +139,21 @@ namespace DownloadManager
                     }
                 }
             }
+        }
+
+        private void TxtUrl_Enter(object sender, EventArgs e)
+        {
+            TxtUrl.Text = "";
+        }
+
+        private void NameTb_Enter(object sender, EventArgs e)
+        {
+            NameTb.Text = "";
+        }
+
+        private void ExTB_Enter(object sender, EventArgs e)
+        {
+            ExTB.Text = "";
         }
     }
 }
