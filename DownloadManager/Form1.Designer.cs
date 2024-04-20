@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             menuStrip1 = new MenuStrip();
             settingToolStripMenuItem = new ToolStripMenuItem();
             DownloadBtn = new Button();
@@ -99,16 +103,51 @@
             TxtUrl.TabIndex = 3;
             TxtUrl.Text = "enter url";
             TxtUrl.TextAlign = HorizontalAlignment.Center;
+            TxtUrl.Enter += TxtUrl_Enter;
             // 
             // dataGridView1
             // 
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(133, 118, 255);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Crimson;
+            dataGridViewCellStyle1.SelectionBackColor = Color.WhiteSmoke;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.BackgroundColor = Color.FromArgb(133, 118, 255);
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.Crimson;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(133, 118, 255);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(133, 118, 255);
+            dataGridViewCellStyle2.SelectionForeColor = Color.Crimson;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.WhiteSmoke;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(133, 118, 255);
+            dataGridViewCellStyle3.SelectionBackColor = Color.WhiteSmoke;
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridView1.GridColor = SystemColors.InactiveCaptionText;
             dataGridView1.Location = new Point(28, 306);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(748, 366);
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.Crimson;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.FromArgb(133, 118, 255);
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(133, 118, 255);
+            dataGridViewCellStyle4.SelectionForeColor = Color.Crimson;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridView1.Size = new Size(748, 360);
             dataGridView1.TabIndex = 4;
+            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             // 
             // progressBar1
             // 
@@ -120,7 +159,7 @@
             // TextLoc
             // 
             TextLoc.AutoSize = true;
-            TextLoc.ForeColor = Color.FromArgb(123, 201, 255);
+            TextLoc.ForeColor = Color.Crimson;
             TextLoc.Location = new Point(84, 127);
             TextLoc.Name = "TextLoc";
             TextLoc.Size = new Size(0, 20);
@@ -150,6 +189,7 @@
             NameTb.TabIndex = 8;
             NameTb.Text = "enter Name";
             NameTb.TextAlign = HorizontalAlignment.Center;
+            NameTb.Enter += NameTb_Enter;
             // 
             // ExTB
             // 
@@ -162,12 +202,13 @@
             ExTB.TabIndex = 9;
             ExTB.Text = " extension";
             ExTB.TextAlign = HorizontalAlignment.Center;
+            ExTB.Enter += ExTB_Enter;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(33, 25, 81);
+            BackColor = Color.White;
             ClientSize = new Size(800, 684);
             Controls.Add(ExTB);
             Controls.Add(NameTb);
